@@ -1,0 +1,108 @@
+{% comment %} <!doctype html>  
+<html lang="en">  
+  <head>  
+    <!-- Required meta tags -->  
+    <meta charset="utf-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+  
+    <!-- Bootstrap CSS -->  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">  
+  
+    <title>Register Page</title>  
+  </head>  
+  <body>  
+  {% block content %}  
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>  
+  
+      
+    {% endblock content %}  
+  </body>  
+</html>   {% endcomment %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homepage</title>
+</head>
+<body>
+    <h1>Create Facebook Account</h1>
+     
+ 
+ 
+
+  <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% for fm in form %}
+  {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}<br><br>
+  {% endfor %}
+  {% comment %} {{ form.as_p }}  {% endcomment %}
+  {% comment %} {{form}} {% endcomment %}
+  {% comment %} <label for="fname">First name:</label> {% endcomment %}
+ <input type="submit" value="Submit">
+</form>   
+
+
+
+
+
+
+<html>
+  <title>Facebook Style Homepage Design using HTML and CSS</title>
+  <head>
+  <link type="text/css" rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+   <div class="fb-header-base">
+   </div>
+   <div class="fb-header">
+    <div id="img1" class="fb-header"><img src="facebook.png" /></div>
+    <div id="form1" class="fb-header">Email or Phone<br>
+    <input placeholder="Email" type="mail" name="name" /><br>
+    <input type="checkbox" />keep me logged in</div>
+    <div id="form2" class="fb-header">Password<br>
+    <input placeholder="Password" type="password" name="password" /><br>
+    Forgotten your password?
+    </div>
+    </div>
+   </div>
+     <input type="submit" class="submit1" value="login" />
+   <div class="fb-body">
+    <div id="intro1" class="fb-body">Facebook helps you 
+     connect and share with the <br>
+     people in your life.</div>
+     <div id="intro2" class="fb-body">Create an account</div>
+     <div id="img2" class="fb-body"><img src="world.png" /></div>
+     <div id="intro3" class="fb-body">It's free and always will be.</div>
+     <div id="form3" class="fb-body">
+     <input placeholder="First Name" type="text" id="namebox" name="name1" />
+     <input placeholder="Last Name" type="text" id="namebox"  /> <br>
+     <input placeholder="Emai" type="text" id="mailbox" /><br>
+     <input placeholder="Re-enter email" type="text" id="mailbox"  /><br>
+     <input placeholder="Password" type="password" id="mailbox"  /><br>
+     <input type="date" id="namebox"  /><br><br>
+     <input type="radio" id="r-b" name="sex" value="male" />Male
+     <input type="radio" id="r-b" name="sex" value="female" />Female<br><br>
+     <p id="intro4">By clicking Create an account, you agree to
+     our Terms and that you have read our Data Policy, 
+     including our Cookie Use.</p>
+     <input type="submit" class="button2" value="Create an account" />
+     <br><hr>
+     <p id="intro5">Create a Page for a celebrity, band or business.</p>
+     </div>
+     </div>
+  <div class="fb-body-footer">
+    <div id="fb-body-footer-base" class="fb-body-footer">English (UK)<br><hr>
+    Sign Up	Log In	&copy; www.coderglass.com &nbsp;&nbsp; 
+    Design by Varun Singh</div>
+  </div>
+  </body>
+  </html>
+
+
+
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homepage</title>
+</head>
+<body>
+    <h1></h1>
+     
+ 
+ 
+
+ 
+
+
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block body_block %}
+        {% if user.is_authenticated %}
+        <h1>{{ user.username }} welcome to your profile page</h1>
+        <img src="{{ form.profile_image.url }}" width = "150" height = "150"  />
+        <h2>first_name  {{ from.first_name }}</h2>
+        <h2>last_name  {{ form.last_name }}</h2>
+        <h2>bio  {{ form.bio}}</h2>
+        <h2>hobby  {{ form.hobby}}</h2>
+        {% endif %}
+        <a href="/deleteprofile/">Delete</a>
+{% endblock %}
+
+
+
+
+

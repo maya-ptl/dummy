@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static '/login.css' %}">
+    <title>Homepage</title>
+</head>
+<body>
+    <h1>Facebook</h1>
+     
+ 
+ 
+
+ 
+<form method="post"  enctype="multipart/form-data">
+  {% csrf_token %}
+  {% if request.user.is_authenticated %}
+  {{form.as_p}}
+  {% comment %} {{form}} {% endcomment %}
+  {% comment %} <label for="fname">First name:</label> {% endcomment %}
+  <input type="submit" value="Submit" name="username" required value="{{ user.bio }}">
+  {% endif %}
+</form>
+   {{request.user.username}}
+ 
+    {% comment %} <h4>List is </h4>
+    <ul>
+    {% for i in form %}
+    <li>{{ i }}</li>
+    {% endfor %} {% endcomment %}
+{% comment %} <form method="post"  enctype="multipart/form-data">
+    {% csrf_token %}
+  {{ form.as_p }} {% endcomment %}
+</form>
+</body>
+</html>
+
+
+
+
+

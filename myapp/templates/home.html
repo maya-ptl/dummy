@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static '/login.css' %}">
+    <title>Homepage</title>
+</head>
+{% comment %} <body>
+    <h1>Create Facebook Account</h1>
+     
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %} {% endcomment %}
+  {% comment %} {% for fm in form %}
+  {{fm.label_tag}} {{fm}} {{fm.errors|striptags}}<br><br>
+  {% endfor %} {% endcomment %}
+  {% comment %} {{ form.as_p }} 
+  {% comment %} {{form}}  {% endcomment %}
+ {% comment %} <label for="fname"></label> {% endcomment %}
+ {% comment %} <input type="submit" value="Submit">
+ <a href="/logout/">logout</a> <br><br>
+ <a href="/change_password/">changepassword</a>
+</form>    
+</body>  
+ {% endcomment %} 
+
+
+
+
+
+
+ <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+
+<div id="navwrapper">
+  <div id="navbar"> <table class="tablewrapper">
+    <form method="POST" class="post-form" action ="/login/">
+      {% csrf_token %} 
+    <tr>
+      <td class="row1">username</td>
+      <td class="row1">password</td>
+    </tr>
+    <tr>
+      <td><input type="text" name='username'  class="inputtext">
+      </td>
+      <td><input type="password" name='password'  class="inputtext">
+      </td>
+      {% comment %} <td><div id="button">Log In</div></td> {% endcomment %}
+      <td><input type="submit" value="login"> </input></td>
+      {% comment %} <td><a href="/reset/">Forgot Password?</a><td> {% endcomment %}
+      {% comment %} <td><input action="/password_reset/" type="password" name='password'> {% endcomment %}
+    </tr>
+    <tr>
+    </form>
+      <td>
+        <div class="row2"><input type="checkbox" checked>Keep me logged in</div></td>
+      <td class="row2 h"><a href="/reset/">Forgot Password?</a></td>
+  </table>
+    
+    <h1 class="logowrapper">facebook</h1>
+   
+  </div>
+  </div>
+
+  <div id="contentwrapper">
+    <div id="content">
+      
+      <div id="leftbod">
+        
+        <div class="connect bolder">
+          Connect with friends and the
+          world around you on Facebook.</div>
+        
+        <div class="leftbar">
+          <img src="https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-xap1/t39.2365-6/851565_602269956474188_918638970_n.png" alt="" class="iconwrap fb1"/>
+          <div class="fb1">
+            <span class="rowtext">See photos and updates</span>
+            <span class="rowtext2 fb1">from friends in News Feed</span>
+          </div>
+        </div> 
+          
+          <div class="leftbar">
+          <img src="https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-xap1/t39.2365-6/851585_216271631855613_2121533625_n.png" alt="" class="iconwrap fb1"/>
+          <div class="fb1">
+            <span class="rowtext">Share what's new</span>
+            <span class="rowtext2 fb1">in your life on your timeline</span>
+            </div>
+          </div>
+             
+            <div class="leftbar">
+          <img src="https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-xap1/t39.2365-6/851558_160351450817973_1678868765_n.png " alt="" class="iconwrap fb1"/>
+          <div class="fb1">
+            <span class="rowtext">Find more</span>
+            <span class="rowtext2 fb1">of what you're looking for with graph search</span>
+        </div> 
+        </div> 
+       
+            
+      </div>
+       
+      <div id="rightbod">
+        <form method="POST" class="signup" action ="/signup/">
+          {% csrf_token %} 
+        <div class="signup bolder">Sign Up</div>
+        <div class="free bolder">It's free and always will be</div>
+        
+        <div class="formbox">
+        {% comment %} <input type="text" class="inputbody in1" placeholder="First name",>
+        <input type="text" class="inputbody in1" placeholder="Last name",> {% endcomment %}
+        {% comment %} {{form.non_field_errors}} {% endcomment %}
+        {% comment %} <span>{{form.username.errors}}</span> {% endcomment %}
+        <input type="text" class="inputbody in1 " name='username' placeholder="username">
+        </div>
+        {% comment %} <span>{{form.email.errors}}</span> {% endcomment %}
+        <div class="formbox">
+        <input type="text" class="inputbody in2" name='email' placeholder="Email">
+        </div>
+        {% comment %} <span>{{form.password1.errors}}</span> {% endcomment %}
+        <div class="formbox">
+        <input type="password" class="inputbody in2" name='password1' placeholder="password">
+        </div>
+        {% comment %} <span>{{form.password2.errors}}</span> {% endcomment %}
+        <div class="formbox">
+        <input type="password" class="inputbody in2" name='password2' placeholder="confirm password">
+        <button type="submit" class="signbut bolder">Sign Up</button>
+        </form>
+        </div>
+        

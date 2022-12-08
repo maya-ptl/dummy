@@ -1,0 +1,14 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password Reset Requested
+From: webmaster@localhost
+To: mayap@gmail.com
+Date: Tue, 06 Dec 2022 08:03:21 -0000
+Message-ID: <167031380164.25844.9783236251139198461@Developer>
+
+Someone asked for password reset for email mayap@gmail.com. Follow the link below:
+://127.0.0.1:8000/reset/Mw/bg0izl-ba58cfdaa202f68ccc11d00a8f0c8135/
+
+
+-------------------------------------------------------------------------------

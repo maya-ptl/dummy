@@ -1,0 +1,14 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password Reset Requested
+From: webmaster@localhost
+To: pr@gmail.com
+Date: Tue, 06 Dec 2022 08:10:41 -0000
+Message-ID: <167031424117.25844.15858206480960420493@Developer>
+
+Someone asked for password reset for email pr@gmail.com. Follow the link below:
+://127.0.0.1:8000/reset/OA/bg0jbt-ba2676338f3e22290c441d4074838b24/
+
+
+-------------------------------------------------------------------------------

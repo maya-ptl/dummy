@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homepage</title>
+</head>
+<body>
+    <h1></h1>
+     
+ 
+ 
+
+ 
+
+{% comment %} {% block title %}{{ user.username }}{% endblock %}
+
+<form method="post" enctype="multipart/form-data">
+        {% if user.is_authenticated %}
+        <h1>{{ user.username }} welcome to your profile page</h1>
+        <img src="{{data.form.profile_image}}" width = "150" height = "150"  />
+        <h2>first_name  {{data.form.first_name }}</h2>
+        <h2>last_name  {{data.form.last_name }}</h2>
+        <h2>bio  {{data.form.bio}}</h2>
+        <h2>hobby  {{data.form.hobby}}</h2>
+        <input type="submit" value="Submit">
+        {% endif %}
+</form>  {% endcomment %}
+        {% comment %} <input type="submit" value="Submit">   {% endcomment %}
+  
+
+<link href="{% static 'css/update.css' %}" rel="stylesheet">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="edit-profile">
+      
+      <h3><img src="{{data.form.profile_image}}" width = "150" height = "150"  /><h3>
+      <h3>Name</h3>
+      <input type="text" name="first_name" value="{{ data.first_name }}" maxlength="30" id="id_first_name"> 
+      <h3>Username</h3>
+      <input type="text" name="username" value="{{ data.username }}" maxlength="150" required="" id="id_username">
+      <h3>Bio</h3>
+      <input type="text" name="bio" value="{{ data.profile.bio }}" maxlength="400" id="id_bio">
+      <h3>First Name</h3>
+      <input type="text" name="first_name" value="{{ data.first_name }}" maxlength="254" id="id_first_name">
+      <h3>Last Name</h3>
+      <input type="text" name="last_name" value="{{ data.last_name }}" maxlength="254" id="id_last_name">
+      <h3>Hobby</h3>
+      <input type="text" name="hobby" value="{{data.hobby }}" maxlength="254" id="id_hobby">
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+</body>
+
+

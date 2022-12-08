@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homepage</title>
+</head>
+<body>
+    <h1></h1>
+     
+
+
+
+<link href="{% static 'css/update.css' %}" rel="stylesheet">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="edit-profile">
+      <h3>Image</h3>
+      <h3><img src="{{data.pic.url}}" width = "150" height = "150"  /><h3>
+      <h3>Username</h3>
+      <input type="text" name="user_name" value="{{data.user_name}}" maxlength="30" id="id_user_name"> 
+      <h3>Description</h3>
+      <input type="text" name="description" value="{{data.description}}" maxlength="150" required="" id="id_description ">
+      <h3>date_posted</h3>
+      <input type="text" name="date_posted" value="{{data.profile.date_posted}}" maxlength="400" id="id_date_posted">
+      {% comment %} <h3>First Name</h3>
+      <input type="text" name="first_name" value="{{ data.first_name }}" maxlength="254" id="id_first_name">
+      <h3>Last Name</h3>
+      <input type="text" name="last_name" value="{{ data.last_name }}" maxlength="254" id="id_last_name">
+      <h3>Hobby</h3>
+      <input type="text" name="hobby" value="{{data.hobby }}" maxlength="254" id="id_hobby"> {% endcomment %}
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+</body>
