@@ -12,6 +12,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
+from django.contrib import messages
+from django.contrib.auth.signals import user_logged_out
 # Create your views here.
 
 
@@ -121,14 +123,23 @@ def get_profile(request):
 @csrf_exempt
 def signup(request):
     if request.method == 'POST':
-        # import pdb;pdb.set_trace()
-        form = SignUpForm(request.POST)
+        import pdb;pdb.set_trace()
+        data = User.objects.filter(username=request.user.username)
+        form =UserRegisterForm(request.POST)
+        
+
         if form.is_valid():
-            form.save()
-            return HttpResponse('user created')
+          
+            
+          
+
+
+          form.save()
+          return HttpResponse('user created')
             # return redirect("/login/")
     else:
-        form = SignUpForm()
+        form =UserRegisterForm()
+        
     return render(request,'home.html',{"form":form})
 
 
@@ -145,19 +156,28 @@ def login(request):
     if form.is_valid():
       username = form.cleaned_data["username"]
       password = form.cleaned_data["password"]
+    
+
       user=authenticate(username=username,password=password)
       if user is not None and user.is_active:
         authlogin(request,user)
         # return redirect("/profile/")
         return redirect("/profile/")
     else:
-      return HttpResponse('enter valid data')
-
+      # return HttpResponse('enter valid data')
+      # if username is None:
+      #   messages.error(request, 'enter username')
+      # if password is None:
+      #   messages.error(request, 'enter password')
+      messages.error(request, 'username or password not correct')
+     
+      return redirect('login')
 
   else:
     form =UserloginForm()
 
   return render(request,'home.html',{"form":form})
+
 
 
 
@@ -192,10 +212,14 @@ def change_password(request):
 def logout_view(request):
     # import pdb;pdb.set_trace()
     if request.user.is_authenticated:
-     logout(request)
-     return HttpResponse("logged Out")
+      # if request.user is None:
+      #   return messages.add_message(request, messages.INFO,'not logged in user')
+      
+      logout(request)
+      return (messages.add_message(request, messages.INFO,'logged Out'))
     else:
-      return redirect('/login/')
+      return HttpResponse('/login/')
+    
 
 #-------------------------------------------------------------------------------------------------------#
 from django.contrib.auth.forms import PasswordResetForm
@@ -267,6 +291,7 @@ def create_post(request):
           else:
             return HttpResponse('invailide user')
   return render(request,'index.html', {'form':fm})
+  # return render(request,'updatepost.html', {'form':fm})
 
 
 
@@ -278,9 +303,10 @@ def delete_post(request):
   if request.user.is_authenticated:
     if request.user is not None:
       try:
-       data = User.objects.get(id=request.user.id)
-       a=data.post_set.all()
-       a.delete()
+      #  data = User.objects.filter(id=request.user.id)
+       data = Post.objects.filter(user_name=request.user.id).delete()
+      #  a=data.post_set.all()
+      #  a.delete()
       except:
         return HttpResponse('post does not exist')
       return HttpResponse('post has been deleted')
@@ -304,20 +330,64 @@ def delete_one_post(request,id):
   return redirect('/login/')
 
 
+#----------------------------------------------------------------------------------------------#
+from django.views.generic.base import View
+class MyComment(View):
+   form_class = CommentForm
 
 
-
-def update_post(request):
-      import pdb;pdb.set_trace()
-      data = Post.objects.filter(user_name=request.user.id)
+   def get(self, request,*args, **kwargs):
       # import pdb;pdb.set_trace()
+      data = Comments.objects.all()
+      return render(request, "msg.html",{'data':data})
+  
+    
+   
 
-      if request.method == 'POST':
-        form = PostForm(request.POST, instance=request.user)
-        if form.is_valid():
-          form.save()
-          return HttpResponse("Updated")
-      else:
-        form = PostForm()
-      return render(request, 'updatepost.html', {'form':form,'data':data})
+
+
+def createtcomment(request):
+  if request.method == 'POST':
+    form = CommentForm(request.POST)
+    if form.is_valid:
+      form.save()
+   
+      return HttpResponseRedirect('/home/')
+  else:
+      form = CommentForm() 
+  return render(request,"msg.html",{'form':form})
+
+
+
+def deletecomment(request):
+  import pdb;pdb.set_trace()
+  try:
+   data = Comments.objects.get(id=request.user.id)
+   data.delete()
+   return HttpResponse('deleted')  
+  except:
+    return HttpResponse('not created comment yetS')
+  return HttpResponse('deleted')  
+
+
+
+
+#_______________________________________________________________________________________________#
+def like_comment(request):
+  # form=LikeCommentForm()
+  form_class = LikeCommentForm 
+  form = form_class 
+
+  # import pdb;pdb.set_trace()
+  data = Comment_Like.objects.filter(user=request.user.id)
+  if request.method == 'POST':
+    form = LikeCommentForm(request.POST)
+    if form.is_valid:
+      form.save()
+      return HttpResponse('kuchh bhi')
+      # messages.success(request,'comented')
+    else:
+      LikeCommentForm()
+  return render(request,'comment.html',{'form':form})
+
 

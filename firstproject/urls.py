@@ -39,7 +39,11 @@ urlpatterns = [
     path('createpost/',views.create_post,name='createpost'),
     path('deletepost/',views.delete_post,name='deletepost'),
     path('deleteonepost/<int:id>/',views.delete_one_post,name='deleteonepost'),
-    path('updatepost/',views.update_post,name='updatepost'),
+    path('comment/',views.MyComment.as_view(),name='comment'),
+    path('createcomment/',views.createtcomment,name='comment'),
+    # path('updatecomment/',views.updatecomment,name='comment'),
+    path('deletecomment/',views.deletecomment,name='deletecomment'),
+    path('like_comment/',views.like_comment,name='like_comment'),
     path('reset/',views.password_reset_request),
 
 

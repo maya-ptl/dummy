@@ -6,8 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Homepage</title>
 </head>
+
 <body>
+<form>
     <h1>profile has been created</h1>
+    {% for i in data %}
+    <h1>post {{i.post}}<br>
+        comented by {{i.username}}<br>
+        {{i.write_comment}}<br>
+        {{i.comment_date}}
+    {% endfor %}
+      <h1>
+</form>
+</body>
+
+<form method="post">
+  {% csrf_token %}
+  {{form.as_p}}
+  <input type="submit" value="Submit">
+</form>
+
+
+{% comment %} <form method="post"  enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if request.user.is_authenticated %}
+    {{form.as_p}}
+    {% comment %} {{form}} {% endcomment %}
+    {% comment %} <label for="fname">First name:</label> {% endcomment %}
+    {% comment %} <input type="submit" value="Submit" name="username" required value="{{ user.bio }}"> {% endcomment %}
+    
      
- 
- 

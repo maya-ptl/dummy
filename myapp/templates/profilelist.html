@@ -1,12 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static '/test.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static '/profile.css' %}"> {% endcomment %}
+    
     <title>Homepage</title>
 </head>
-<body>
+{% comment %} <body>
 
 {% block title %}{{ user.username }}{% endblock %}
 
@@ -18,7 +22,41 @@
         <h2>  {{fm.last_name}}</h2>
         <h2>  {{fm.hobby}}</h2>
         
-{% endfor %} 
+{% endfor %}  {% endcomment %}
 
 {% comment %} {% endblock %} {% endcomment %}
 
+<form method="POST" class="post-form"   enctype="multipart/form-data">
+    {% csrf_token %} 
+  <tr>
+    <td class="row1">user</td>
+    <td class="row1"></td> 
+  </tr>
+  <tr>
+    
+    {{u.hobby}}
+    <h3><img src=" " width = "150" height = "150" style="border-radius: 50%;" class="img"  /><h3>
+        <div class="container" style="width:50%">
+        <label for="id_first_name">Name</label>
+        <input type="text" name="first_name" value="{{ user.first_name }}" maxlength="30" id="id_first_name" class="cancelbtn"> 
+        <h3>Username</h3>
+        <input type="text" name="username" value="{{ user.username }}" maxlength="150" required="" id="id_username">
+        <h3>Bio</h3>
+        <input type="text" name="bio" value="{{ user.profile.bio }}" maxlength="400" id="id_bio">
+        <h3>First Name</h3>
+        <input type="text" name="first_name" value="{{ user.first_name }}" maxlength="254" id="id_first_name">
+        <h3>Last Name</h3>
+        <input type="text" name="last_name" value="{{ user.last_name }}" maxlength="254" id="id_last_name">
+        <h3>Hobby</h3>
+        <input type="text" name="hobby" value="{{user.hobby }}" maxlength="254" id="id_hobby">
+  
+    
+    {% comment %} <td><div id="button">Log In</div></td> {% endcomment %}
+    <td><input type="submit" value="Create Profile"> </input></td>
+        </div>
+    {% comment %} <td><a href="/reset/">Forgot Password?</a><td> {% endcomment %}
+    {% comment %} <td><input action="/password_reset/" type="password" name='password'> {% endcomment %}
+  </tr> 
+  
+  <tr>
+  </form>

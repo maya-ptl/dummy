@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{% static '/login.css' %}">
+    <link rel="stylesheet" href="{% static '/home.css' %}">
     <title>Homepage</title>
 </head>
 {% comment %} <body>
@@ -37,33 +37,50 @@
 
 <div id="navwrapper">
   <div id="navbar"> <table class="tablewrapper">
+     
     <form method="POST" class="post-form" action ="/login/">
       {% csrf_token %} 
     <tr>
       <td class="row1">username</td>
-      <td class="row1">password</td>
+      <td class="row1">password</td> 
     </tr>
     <tr>
-      <td><input type="text" name='username'  class="inputtext">
+      <td><input type="text" name='username'   class="inputtext">
       </td>
-      <td><input type="password" name='password'  class="inputtext">
+      <td><input type="password" name='password'   class="inputtext">
       </td>
       {% comment %} <td><div id="button">Log In</div></td> {% endcomment %}
       <td><input type="submit" value="login"> </input></td>
       {% comment %} <td><a href="/reset/">Forgot Password?</a><td> {% endcomment %}
       {% comment %} <td><input action="/password_reset/" type="password" name='password'> {% endcomment %}
-    </tr>
+    </tr> 
+    
     <tr>
     </form>
       <td>
-        <div class="row2"><input type="checkbox" checked>Keep me logged in</div></td>
-      <td class="row2 h"><a href="/reset/">Forgot Password?</a></td>
+          {% for message in messages %}
+              <a class="close" href="#" data-dismiss="alert" style="text-decoration: none;">{{success}} {{ message }}</a>
+          {%endfor%}  
+        </div> 
+      </td> 
+          
+      <td class="row2 h" style="display: flex;"><a href="/reset/">Forgot Password?</a></td>
+      <td class="row2 h" style="display: flex;"><a href="/logout/">logout</a></td>
+  
+      {% for message in messages %}
+          <a class="close" href="#" data-dismiss="alert" style="text-decoration: none;">{{success}} {{ message }}</a>
+      {%endfor%}
+      
+      {% comment %} <td class="row2 h" style="display: flex;"><a href="/logout/">logout</a></td> {% endcomment %}
   </table>
     
     <h1 class="logowrapper">facebook</h1>
    
   </div>
   </div>
+
+  
+   
 
   <div id="contentwrapper">
     <div id="content">
@@ -101,9 +118,10 @@
             
       </div>
        
-      <div id="rightbod">
-        <form method="POST" class="signup" action ="/signup/">
+      <div id="rightbod" >
+      <form method="POST" action ="/signup/" novalidate >
           {% csrf_token %} 
+        
         <div class="signup bolder">Sign Up</div>
         <div class="free bolder">It's free and always will be</div>
         
@@ -112,20 +130,36 @@
         <input type="text" class="inputbody in1" placeholder="Last name",> {% endcomment %}
         {% comment %} {{form.non_field_errors}} {% endcomment %}
         {% comment %} <span>{{form.username.errors}}</span> {% endcomment %}
-        <input type="text" class="inputbody in1 " name='username' placeholder="username">
+        <input type="text" class="inputbody in1 " name='username' placeholder="username">   
+          <span class="main_div">{{form.username.errors}}</span>
         </div>
-        {% comment %} <span>{{form.email.errors}}</span> {% endcomment %}
+    
         <div class="formbox">
-        <input type="text" class="inputbody in2" name='email' placeholder="Email">
+        {% comment %} <label for="id_email">Email address:</label> {% endcomment %}
+        {% comment %} <label for="mail">I would like you to provide me an e-mail</label> {% endcomment %}
+        <input type="text" class="inputbody in2" name='email' placeholder="Email" id='email'>
+        <span>{{form.uemail.errors}}</span>
         </div>
-        {% comment %} <span>{{form.password1.errors}}</span> {% endcomment %}
+        <td>
+          
+          {% comment %} {% for message in form.username.errors %}
+              <a class="close" href="#" data-dismiss="alert" style="text-decoration: none;">{{success}} {{ message }}</a>
+                
+          {%endfor%} {% endcomment %}
+         
         <div class="formbox">
-        <input type="password" class="inputbody in2" name='password1' placeholder="password">
+        <input type="password" class="inputbody in2" name='password1' placeholder="password" id="pw">
+        <span>{{form.password1.errors}}</span>
         </div>
         {% comment %} <span>{{form.password2.errors}}</span> {% endcomment %}
         <div class="formbox">
-        <input type="password" class="inputbody in2" name='password2' placeholder="confirm password">
+        <input type="password" class="inputbody in2" name='password2' placeholder="confirm password" id="cpw">
+        <sapn>{{form.password2.errors}}</sapn>
+        </div> 
         <button type="submit" class="signbut bolder">Sign Up</button>
-        </form>
+        {% comment %} <button type="submit" class="signbut bolder">Logout</button> {% endcomment %}
+      </form>
         </div>
+        
+        
         

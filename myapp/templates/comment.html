@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% comment %} <link rel="stylesheet" href="{% static '/home.css' %}"> {% endcomment %}
+    <title>Homepage</title>
+</head>
+
+<form method= "post"  enctype="multipart/form-data">
+  {% csrf_token %}
+  {% comment %} {% for i in data %} {% endcomment %}
+  {{form.as_p}} 
+  {% comment %} {{i.comment}} {% endcomment %}
+
+  {% comment %} {% endfor %} {% endcomment %}
+  {% comment %} <label for="fname">First name:</label> {% endcomment %}
+  <input type="submit" value="Submit" name="username" required value="{{ user.bio }}">
+  
+</form>
+   {{request.user.username}}
