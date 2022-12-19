@@ -90,6 +90,8 @@ class UserloginForm(forms.Form):
 user = get_user_model()
 
 
+
+
 class CommentForm(ModelForm):
     class Meta: 
         model = Comments
@@ -118,8 +120,9 @@ class UserRegisterForm(forms.ModelForm):
         
 
     # def clean_username(self):
+    #     User.objects.filter(username=request.user)
     #     uname = self.cleaned_data['username']
-    #     if len(uname)<4:
+    #     if :
     #         raise forms.ValidationError('username should have at lest 4 character')
 
     #     return uname
@@ -149,8 +152,7 @@ class UserRegisterForm(forms.ModelForm):
     def clean_password2(self):
         # import pdb;pdb.set_trace()
         if 'password1' in self.cleaned_data:
-        #  upassword1 = self.cleaned_data['password1']
-        #  upassword2 = self.cleaned_data['password2']
+        
          if self.cleaned_data['password1']!=self.cleaned_data['password2']:
             raise forms.ValidationError('enter correct password')
         # return upassword2
