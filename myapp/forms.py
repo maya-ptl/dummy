@@ -119,13 +119,13 @@ class UserRegisterForm(forms.ModelForm):
             
         
 
-    # def clean_username(self):
-    #     User.objects.filter(username=request.user)
-    #     uname = self.cleaned_data['username']
-    #     if :
-    #         raise forms.ValidationError('username should have at lest 4 character')
+    def clean_username(self):
+        User.objects.filter(username=request.user)
+        uname = self.cleaned_data['username']
+        if :
+            raise forms.ValidationError('username should have at lest 4 character')
 
-    #     return uname
+        return uname
 
     def clean_email(self):
         # import pdb;pdb.set_trace()
