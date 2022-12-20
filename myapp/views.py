@@ -218,7 +218,7 @@ def logout_view(request):
       logout(request)
       return (messages.add_message(request, messages.INFO,'logged Out'))
     else:
-      return HttpResponse('/login/')
+      return redirect('/login/')
     
 
 #-------------------------------------------------------------------------------------------------------#
