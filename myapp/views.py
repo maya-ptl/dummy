@@ -14,6 +14,8 @@ from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from django.contrib import messages
 from django.contrib.auth.signals import user_logged_out
+
+from django.core.mail import send_mail
 # Create your views here.
 
 
@@ -123,7 +125,7 @@ def get_profile(request):
 @csrf_exempt
 def signup(request):
     if request.method == 'POST':
-        import pdb;pdb.set_trace()
+        # import pdb;pdb.set_trace()
         data = User.objects.filter(username=request.user.username)
         form =UserRegisterForm(request.POST)
         
@@ -141,8 +143,6 @@ def signup(request):
         form =UserRegisterForm()
         
     return render(request,'home.html',{"form":form})
-
-
 
 
 
@@ -240,9 +240,7 @@ def password_reset_request(request):
         if password_reset_form.is_valid():
             data = password_reset_form.cleaned_data['email']
             associated_users = User.objects.filter(Q(email=data))
-            # You can use more than one way like this for resetting the password.
-            # ...filter(Q(email=data) | Q(username=data))
-            # but with this you may need to change the password_reset form as well.
+            # import pdb;pdb.set_trace()
             if associated_users.exists():
                 for user in associated_users:
                     subject = "Password Reset Requested"
@@ -264,9 +262,12 @@ def password_reset_request(request):
                     except BadHeaderError:
                         return HttpResponse('Invalid header found.')
                     return redirect("password_reset/done/")
+                    # return redirect("reset/done/")
+            
     password_reset_form = PasswordResetForm()
     return render(request=request, template_name="registration/password_reset_form.html",
                   context={"password_reset_form": password_reset_form})
+
 
 
 
