@@ -184,7 +184,7 @@ def login(request):
 
 login_required
 def change_password(request):
-    # import pdb;pdb.set_trace()
+    import pdb;pdb.set_trace()
     if request.user.is_authenticated:
     
       if request.method == 'POST':
@@ -222,53 +222,51 @@ def logout_view(request):
     
 
 #-------------------------------------------------------------------------------------------------------#
-from django.contrib.auth.forms import PasswordResetForm
-from django.db.models import Q
-from django.contrib.auth.tokens import default_token_generator
-from django.core.mail import BadHeaderError, send_mail
-from django.template.loader import render_to_string
-from django.utils.encoding import force_bytes
-from django.utils.http import urlsafe_base64_encode
-from django.conf import settings
+# from django.contrib.auth.forms import PasswordResetForm
+# from django.db.models import Q
+# from django.contrib.auth.tokens import default_token_generator
+# from django.core.mail import BadHeaderError, send_mail
+# from django.template.loader import render_to_string
+# from django.utils.encoding import force_bytes
+# from django.utils.http import urlsafe_base64_encode
+# from django.conf import settings
 
-def password_reset_request(request):
+# def password_reset_request(request):
 
-    if request.method == "POST":
-        # import pdb;pdb.set_trace()
-        domain = request.headers['Host']
-        password_reset_form = PasswordResetForm(request.POST)
-        if password_reset_form.is_valid():
-            data = password_reset_form.cleaned_data['email']
-            associated_users = User.objects.filter(Q(email=data))
-            # import pdb;pdb.set_trace()
-            if associated_users.exists():
-                for user in associated_users:
-                    subject = "Password Reset Requested"
-                    # import pdb;pdb.set_trace()
-                    email_template_name = "registration/password_reset_email.html"
-                    c = {
-                        "email": user.email,
-                        'domain': domain,
-                        # 'site_name': 'Interface',
-                        "uid": urlsafe_base64_encode(force_bytes(user.pk)),
-                        "user": user,
-                        'token': default_token_generator.make_token(user),
-                        # 'protocol': 'http',
-                    }
-                    print(default_token_generator.make_token(user))
-                    email = render_to_string(email_template_name, c)
-                    try:
-                        send_mail(subject, email, settings.EMAIL_HOST_USER, [user.email], fail_silently=False)
-                    except BadHeaderError:
-                        return HttpResponse('Invalid header found.')
-                    return redirect("password_reset/done/")
-                    # return redirect("reset/done/")
+#     if request.method == "POST":
+#         # import pdb;pdb.set_trace()
+#         domain = request.headers['Host']
+#         password_reset_form = PasswordResetForm(request.POST)
+#         if password_reset_form.is_valid():
+#             data = password_reset_form.cleaned_data['email']
+#             associated_users = User.objects.filter(Q(email=data))
+#             # import pdb;pdb.set_trace()
+#             if associated_users.exists():
+#                 for user in associated_users:
+#                     subject = "Password Reset Requested"
+#                     # import pdb;pdb.set_trace()
+#                     email_template_name = "registration/password_reset_email.html"
+#                     c = {
+#                         "email": user.email,
+#                         'domain': domain,
+#                         # 'site_name': 'Interface',
+#                         "uid": urlsafe_base64_encode(force_bytes(user.pk)),
+#                         "user": user,
+#                         'token': default_token_generator.make_token(user),
+#                         # 'protocol': 'http',
+#                     }
+#                     print(default_token_generator.make_token(user))
+#                     email = render_to_string(email_template_name, c)
+#                     try:
+#                         send_mail(subject, email, settings.EMAIL_HOST_USER, [user.email], fail_silently=False)
+#                     except BadHeaderError:
+#                         return HttpResponse('Invalid header found.')
+#                     return redirect("password_reset/done/")
+#                     # return redirect("reset/done/")
             
-    password_reset_form = PasswordResetForm()
-    return render(request=request, template_name="registration/password_reset_form.html",
-                  context={"password_reset_form": password_reset_form})
-
-
+#     password_reset_form = PasswordResetForm()
+#     return render(request=request, template_name="registration/password_reset_form.html",
+#                   context={"password_reset_form": password_reset_form})
 
 
 

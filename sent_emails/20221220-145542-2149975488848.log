@@ -1,0 +1,14 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password Reset Requested
+From: your email address
+To: m@gmail.com
+Date: Tue, 20 Dec 2022 09:25:42 -0000
+Message-ID: <167152834224.30064.2805032056807418944@Developer>
+
+Someone asked for password reset for email m@gmail.com. Follow the link below:
+://127.0.0.1:8000/reset/NDA/bgqk4u-1ff98c5e54276bc1241efe2ce4467924/
+
+
+-------------------------------------------------------------------------------
